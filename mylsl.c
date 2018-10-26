@@ -83,6 +83,12 @@ char *convert_gid_to_uname(__gid_t gid)
     }
 }
 
+void print_slink(const char * linkname){
+    char linkbuf[1024] = "";
+    readlink(linkname,linkbuf,1024);
+    printf(L_CYAN"%53s -> %s"NECOLOR,"",linkbuf);
+    
+}
 //coded by shaobochao
 void print_file_detial(f_detial fd, int INDENT)
 {
@@ -193,6 +199,12 @@ void enter_dir(char *dir, int depth)
         */
         print_file_detial(efd, depth);
 
+        if(S_ISLNK(statbuf.st_mode))
+        {
+            print_slink(entry->d_name);
+            printf("\n");
+        }
+        
         if (S_ISDIR(statbuf.st_mode))
         {
             /*  显示缩进以及目录名 */
