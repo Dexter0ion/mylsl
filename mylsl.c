@@ -8,6 +8,10 @@
             1.show detail informations 
             2.add color pattern
             3.enter sub dir and print indent
+    
+    update:2018/10/26
+    Features:
+            1.print symbolic link name
 */
 
 #include <unistd.h>
